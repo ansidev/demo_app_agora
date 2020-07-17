@@ -2,8 +2,8 @@
   <div class="wrapper meeting">
     <div class="ag-header">
       <div class="ag-header-lead">
-        <img class="header-logo" :src="require('../assets/images/ag-logo.png')" alt="" />
-        <span>AgoraWeb v2.1</span>
+        <img class="header-logo" :src="require('../assets/images/twice_icon.png')" alt="" />
+        <span>Demo Hi Touch</span>
       </div>
       <div class="ag-header-msg">
           Room:&nbsp;<span id="room-name">{{channel}}</span>
@@ -22,8 +22,8 @@
       </div>  
     </div>
     <div class="ag-footer">
-      <a class="ag-href" href="https://www.agora.io"><span>Powered By Agora</span></a>
-      <span>Talk to Support: 400 632 6626</span>
+      <a class="ag-href" href="https://www.agora.io"><span>Demo By Workhouse</span></a>
+      <span>workhouse.me</span>
     </div>
   </div>
 </template>

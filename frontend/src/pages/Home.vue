@@ -4,9 +4,8 @@
     <div class="ag-main">
       <section class="login-wrapper">
         <div class="login-header">
-          <img :src="require('../assets/images/ag-logo.png')" alt="" />
-          <p class="login-title">AgoraWeb v2.1</p>
-          <p class="login-subtitle">Powering Real-Time Communications</p>
+          <img :src="require('../assets/images/twice_icon.png')" alt="" />
+          <p class="login-subtitle">Input Name</p>
         </div>
         <div class="login-body">
           <div class="columns">
@@ -155,7 +154,7 @@ export default {
 
 <style scoped>
 .index.wrapper {
-  background: url("../assets/images/ag-index-background.png") center no-repeat;
+  background: url("../assets/images/background.png") center no-repeat;
   background-size: cover;
   min-height: 100%;
   height: auto;
@@ -207,14 +206,14 @@ export default {
 }
 
 .login-subtitle {
-  color: #637c8e;
+  color: #0a0a0a;
 }
 
 #joinBtn {
   width: 100%;
   font-size: 18px;
   padding: 10px 10px;
-  background: rgb(0, 182, 237);
+  background: rgb(252, 93, 157);
 }
 
 #joinBtn:hover {
