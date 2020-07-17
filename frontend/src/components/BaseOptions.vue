@@ -30,19 +30,19 @@ export default {
     return {
       options: [
         {
-          label: "Agora Video Call",
+          label: "Video Call",
           value: "avc",
           content: "One to one and group calls"
         },
         {
-          label: "Agora Live",
+          label: "Live",
           value: "al",
           content:
             "Enabling real-time interactions between the host and the audience"
         }
       ],
       active: false,
-      message: "Agora Video Call"
+      message: "Video Call"
     };
   },
   methods: {

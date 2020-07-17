@@ -4,9 +4,8 @@
     <div class="ag-main">
       <section class="login-wrapper">
         <div class="login-header">
-          <img :src="require('../assets/images/ag-logo.png')" alt="" />
-          <p class="login-title">AgoraWeb v2.1</p>
-          <p class="login-subtitle">Powering Real-Time Communications</p>
+          <img :src="require('../assets/images/twice_icon.png')" alt="" />
+          <p class="login-subtitle">Input Name</p>
         </div>
         <div class="login-body">
           <div class="columns">
@@ -77,11 +76,11 @@
     </div>
     <div class="ag-footer">
       <a class="ag-href" href="https://www.agora.io">
-        <span>Powered By Agora</span>
+        <span>Twice app demo</span>
       </a>
       <div>
-      <span>Interested in Agora video call SDK? Contact </span>
-      <span class="ag-contact">sales@agora.io</span>
+      <span> 開発環境</span>
+      <span class="ag-contact">localhost:8080</span>
       </div>
     </div>
   </div>
@@ -89,6 +88,7 @@
 
 <script>
 import * as Cookies from "js-cookie"
+
 export default {
   components: {
     BaseOptions: () => import("@/components/BaseOptions"),
@@ -154,7 +154,7 @@ export default {
 
 <style scoped>
 .index.wrapper {
-  background: url("../assets/images/ag-index-background.png") center no-repeat;
+  background: url("../assets/images/background.png") center no-repeat;
   background-size: cover;
   min-height: 100%;
   height: auto;
@@ -206,14 +206,14 @@ export default {
 }
 
 .login-subtitle {
-  color: #637c8e;
+  color: #0a0a0a;
 }
 
 #joinBtn {
   width: 100%;
   font-size: 18px;
   padding: 10px 10px;
-  background: rgb(0, 182, 237);
+  background: rgb(252, 93, 157);
 }
 
 #joinBtn:hover {
