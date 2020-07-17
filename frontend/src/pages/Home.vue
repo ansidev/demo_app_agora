@@ -77,11 +77,11 @@
     </div>
     <div class="ag-footer">
       <a class="ag-href" href="https://www.agora.io">
-        <span>Powered By Agora</span>
+        <span>Twice app demo</span>
       </a>
       <div>
-      <span>Interested in Agora video call SDK? Contact </span>
-      <span class="ag-contact">sales@agora.io</span>
+      <span> 開発環境</span>
+      <span class="ag-contact">localhost:8080</span>
       </div>
     </div>
   </div>
@@ -89,6 +89,7 @@
 
 <script>
 import * as Cookies from "js-cookie"
+
 export default {
   components: {
     BaseOptions: () => import("@/components/BaseOptions"),
