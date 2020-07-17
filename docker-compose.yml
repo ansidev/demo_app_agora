@@ -1,34 +1,41 @@
-version: '3'
+version: "2"
+
 services:
-  backend:
-    container_name: backend
-    build: ./docker/backend
-    volumes:
-      - ./backend:/var/www
-    depends_on:
-      - db
   nginx:
-    image: nginx
-    container_name: nginx
-    ports:
-      - 80:80
+    image: nginx:alpine
     volumes:
-      - ./backend:/var/www
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./backend/public:/var/www/html/public
+    ports:
+      - 8000:80
     depends_on:
       - backend
-  db:
-    image: mysql:5.7
-    restart: always
-    container_name: db-host
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: root
-      TZ: 'Asia/Tokyo'
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    links:
+      - backend
+  backend:
+    build:
+      context: ./docker/backend
+      dockerfile: ./Dockerfile
     volumes:
-      - ./docker/db/data:/var/lib/mysql
-      - ./docker/db/my.conf:/etc/mysql/conf.d/my.cnf
-      - ./docker/db/sql:/docker-entrypoint-initdb.d
+      - ./backend:/var/www/html
+    links:
+      - db
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_DATABASE=hi-touch
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+  db:
+    build: ./docker/db
+    image: mysql:5.7
+    volumes:
+            - ./docker/db/sql:/docker-entrypoint-initdb.d
+            - ./docker/db/.data/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=hi-touch
+      - TZ=Asia/Tokyo
     ports:
       - 3306:3306
