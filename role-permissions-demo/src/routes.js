@@ -91,7 +91,7 @@ router.beforeEach((to, from, next) => {
     })
 
     //the route requires authentication
-  } else if (to.meta.authRequired) {
+  } else if (to.meta.authRequired === 'true') {
 
     if (!localStorage.getItem("accessToken")) {
 
@@ -115,8 +115,8 @@ router.beforeEach((to, from, next) => {
   return next()
 });
 
-hasAccess(name) {
-  permissions = localStorage.getItem("permissions");
+function hasAccess(name) {
+  let permissions = localStorage.getItem("userPermissions");
 
   switch (name) {
 

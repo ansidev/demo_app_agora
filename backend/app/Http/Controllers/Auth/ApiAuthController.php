@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Hash;
 use Validator;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Auth\BaseController as BaseController;
-
+use Illuminate\Support\Facades\Auth;
 
 class ApiAuthController extends BaseController
 {
-
     /**
      * Register api
      *
@@ -22,6 +21,7 @@ class ApiAuthController extends BaseController
      */
     public function register(Request $request)
     {
+        // return "hai";
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -36,8 +36,11 @@ class ApiAuthController extends BaseController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
+        $role = $user->assignRole('User');
+        dd($user);
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
+        $success['role'] =  "User";
    
         return $this->sendResponse($success, 'User register successfully.');
     }
@@ -53,6 +56,7 @@ class ApiAuthController extends BaseController
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('MyApp')-> accessToken; 
             $success['name'] =  $user->name;
+            $success['role'] =  $user->getRoleNames();
    
             return $this->sendResponse($success, 'User login successfully.');
         } 
