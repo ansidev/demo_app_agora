@@ -33,15 +33,15 @@ class ApiAuthController extends BaseController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
 
-        /** @var User $user */
         $default_role = Role::findByName("User", "api");
+        /** @var User $user */
         $user = User::create($input);
         $user->assignRole($default_role);
         $user->save();
 
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['name'] = $user->name;
-        $success['role'] = $default_role;
+        $success['roles'] = $user->getRoleNames();
 
         return $this->sendResponse($success, 'User register successfully.');
     }
@@ -54,10 +54,11 @@ class ApiAuthController extends BaseController
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            /** @var User $user */
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
             $success['name'] = $user->name;
-            $success['role'] = $user->getRoleNames();
+            $success['roles'] = $user->getRoleNames();
 
             return $this->sendResponse($success, 'User login successfully.');
         } else {
