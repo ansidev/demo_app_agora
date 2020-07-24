@@ -20,19 +20,19 @@ Route::group([
 ], function () {
     Route::get('/permissions', 'RoleManager@permissionsIndex')
         ->name('permissions.index')
-        ->middleware('permission:View All Permissions');
+        ->middleware('role:Admin');
 
     Route::get('/roles', 'RoleManager@rolesIndex')
         ->name('roles.index')
-        ->middleware('permission:View All Roles');
+        ->middleware('role:Admin');
 
-    Route::post('/roles/{role}/assign/{user}', 'RoleManager@rolesAddUser')
-        ->name('roles.addUser')
-        ->middleware('permission:Assign Role');
+    Route::post('/role/assign', 'RoleManager@assignRoleToUser')
+        ->name('roles.assignRoleToUser')
+        ->middleware('role:Admin');
 
-    Route::post('/roles/{role}/unassign/{user}', 'RoleManager@rolesRemoveUser')
-        ->name('roles.removeUser')
-        ->middleware('permission:Unassign Role');
+    Route::post('/role/unassign', 'RoleManager@unassignRoleToUser')
+        ->name('roles.unassignRoleToUser')
+        ->middleware('role:Admin');
 });
 
 Route::middleware(['cors', 'json.response', 'auth:api'])->get('/user', function (Request $request) {
