@@ -1,8 +1,8 @@
 <template>
-  <div id="ag-canvas" v-if="displayMode !== 'user_list'">
-    <CallScreen v-bind="displayModeConfig[displayMode].left" />
-    <CallScreen v-bind="displayModeConfig[displayMode].right" />
-    <RemainingTimeToCall v-if="displayMode === 'wait'" v-bind="displayModeConfig[displayMode].remaining_time">Remaining time to call: {{ remainingTimeToCall }}</RemainingTimeToCall>
+  <div id="ag-canvas" v-if="screenMode !== 'user_list'">
+    <CallScreen v-bind="screenModeConfig[screenMode].left" />
+    <CallScreen v-bind="screenModeConfig[screenMode].right" />
+    <RemainingTimeToCall v-if="screenMode === 'wait'" v-bind="screenModeConfig[screenMode].remaining_time">Remaining time to call: {{ remainingTimeToCall }}</RemainingTimeToCall>
     <div class="ag-btn-group">
       <span
         @click="handleExit"
@@ -29,7 +29,7 @@ export default {
     UserList,
   },
   props: {
-    displayMode: {
+    screenMode: {
       type: String,
       default: "artist"
     }
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       remainingTimeToCall: '5 mins',
-      displayModeConfig: {
+      screenModeConfig: {
         artist: {
           left: {
             "row-start": "span 10",

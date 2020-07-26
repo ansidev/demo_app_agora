@@ -41,7 +41,7 @@ class ApiAuthController extends BaseController
 
         $success['token'] = $user->createToken('MyApp')->accessToken;
         $success['name'] = $user->name;
-        $success['role'] = $default_role;
+        $success['roles'] = $user->getRoleNames();
 
         return $this->sendResponse($success, 'User register successfully.');
     }
@@ -57,11 +57,11 @@ class ApiAuthController extends BaseController
             $user = Auth::user();
             $success['token'] = $user->createToken('MyApp')->accessToken;
             $success['name'] = $user->name;
-            $success['role'] = $user->getRoleNames();
+            $success['roles'] = $user->getRoleNames();
 
             return $this->sendResponse($success, 'User login successfully.');
         } else {
-            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised'], 401);
         }
     }
 

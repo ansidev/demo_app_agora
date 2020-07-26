@@ -9,43 +9,13 @@
         />
         <span>Demo Hi Touch</span>
       </div>
-      <div class="ag-display-mode">
-        <input
-          type="radio"
-          id="artist"
-          value="artist"
-          v-model="displayMode"
-        >
-        <label for="artist">Artist</label>
-        <input
-          type="radio"
-          id="user"
-          value="user"
-          v-model="displayMode"
-        >
-        <label for="user">User</label>
-        <input
-          type="radio"
-          id="wait"
-          value="wait"
-          v-model="displayMode"
-        >
-        <label for="wait">Wait</label>
-        <input
-          type="radio"
-          id="user_list"
-          value="user_list"
-          v-model="displayMode"
-        >
-        <label for="user_list">User List</label>
-      </div>
       <div class="ag-header-msg">
         Room:&nbsp;<span id="room-name">{{channel}}</span>
       </div>
     </div>
     <div class="ag-main">
       <div class="ag-container">
-        <DemoVideoCall :display-mode="displayMode" />
+        <DemoVideoCall :screen-mode="screenMode" />
       </div>
     </div>
     <div class="ag-footer">
@@ -67,7 +37,7 @@ export default {
   },
   data() {
     return {
-      displayMode: "artist",
+      screenMode: Cookies.get("screenMode") || "unknown",
       channel: Cookies.get("channel") || "test",
     };
   }
