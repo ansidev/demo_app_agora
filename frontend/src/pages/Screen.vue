@@ -31,6 +31,13 @@
           v-model="displayMode"
         >
         <label for="wait">Wait</label>
+        <input
+          type="radio"
+          id="user_list"
+          value="user_list"
+          v-model="displayMode"
+        >
+        <label for="user_list">User List</label>
       </div>
       <div class="ag-header-msg">
         Room:&nbsp;<span id="room-name">{{channel}}</span>

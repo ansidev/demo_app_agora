@@ -1,5 +1,8 @@
 <template>
-  <div id="ag-canvas">
+  <div id="ag-canvas" v-if="displayMode !== 'user_list'">
+    <CallScreen v-bind="displayModeConfig[displayMode].left" />
+    <CallScreen v-bind="displayModeConfig[displayMode].right" />
+    <RemainingTimeToCall v-if="displayMode === 'wait'" v-bind="displayModeConfig[displayMode].remaining_time">Remaining time to call: {{ remainingTimeToCall }}</RemainingTimeToCall>
     <div class="ag-btn-group">
       <span
         @click="handleExit"
@@ -9,21 +12,21 @@
         <i class="ag-icon ag-icon-leave"></i>
       </span>
     </div>
-    <CallScreen v-bind="displayModeConfig[displayMode].left" />
-    <CallScreen v-bind="displayModeConfig[displayMode].right" />
-    <RemainingTimeToCall v-if="displayMode === 'wait'" v-bind="displayModeConfig[displayMode].remaining_time">Remaining time to call: {{ remainingTimeToCall }}</RemainingTimeToCall>
   </div>
+  <UserList v-else />
 </template>
 
 <script>
 import { merge } from "lodash";
 import CallScreen from "@/components/CallScreen.vue";
 import RemainingTimeToCall from "@/components/RemainingTimeToCall.vue";
+import UserList from "@/components/UserList.vue";
 
 export default {
   components: {
     CallScreen,
-    RemainingTimeToCall
+    RemainingTimeToCall,
+    UserList,
   },
   props: {
     displayMode: {
