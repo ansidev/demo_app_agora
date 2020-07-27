@@ -109,10 +109,6 @@
 import * as Cookies from "js-cookie";
 
 export default {
-  components: {
-    TextInput: () => import("@/components/form/TextInput")
-  },
-
   data() {
     return {
       email: "",
