@@ -11,7 +11,7 @@ Type  | Options
 ------------- | -------------
 Identity  | Audience/Audio-Only/Video
 Resolution  | Go to [Document Center](https://docs.agora.io/en/) for detail
-Transcode  | VP8, H264 (for safari)
+Transcode  | VP8, H264 (for safari) 
 Channel Name  |  As you please
 
 - Disable/Enable video and audio
@@ -32,29 +32,25 @@ export const AGORA_APP_ID = 'abcdefg'
 ```
 
 <del>Then download our SDK 'AgoraRTC-*.js', rename it to 'AgoraRTC.js' and put it under the path '/src/library/'.</del>
-Now we use cdn to get sdk. You do not have to download it by yourself any more.
-
-## Project setup
+Now we use cdn to get sdk. You do not have to download it by yourself any more. 
 
 Run npm to install dependency.
-```
+
+``` bash
+# install dependency
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# serve with hot reload at localhost:3000
+npm run start
 
-### Compiles and minifies for production
-```
+# build for production with minification
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Contact Us
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- You can file bugs about this demo at issue
+
+## License
+The MIT License (MIT).

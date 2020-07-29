@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { merge } from "lodash";
 import CallScreen from "@/components/CallScreen.vue";
 import RemainingTimeToCall from "@/components/RemainingTimeToCall.vue";
 import UserList from "@/components/UserList.vue";
@@ -89,9 +90,9 @@ export default {
     };
   },
   methods: {
-    // handleExit(e) {
-    //   // Return to home
-    // }
+    handleExit(e) {
+      // Return to home
+    }
   },
 };
 </script>

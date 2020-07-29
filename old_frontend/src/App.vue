@@ -4,15 +4,8 @@
 
 <script>
 export default {
-  created() {
-    let agoraScript = document.createElement("script");
-    agoraScript.setAttribute(
-      "src",
-      "https://cdn.agora.io/sdk/release/AgoraRTCSDK-3.1.0.js"
-    );
-    document.head.appendChild(agoraScript);
-  }
-};
+  name: "App"
+}
 </script>
 
 <style>

@@ -1,0 +1,57 @@
+import Vue from 'vue'
+import Notification from 'vue-bulma-notification'
+
+const NotificationComponent = Vue.extend(Notification)
+
+const notify = (propsData = {
+  title: '',
+  message: '',
+  type: '',
+  direction: '',
+  duration: 4500,
+  container: '.notifications'
+}) => {
+  return new NotificationComponent({
+    el: document.createElement('div'),
+    propsData
+  })
+}
+
+const notifyWithType = (propsData = {
+  title: '',
+  message: '',
+  direction: '',
+  duration: 4500,
+  container: '.notifications'
+}, type) => {
+  return notify({
+    type,
+    ...propsData,
+  })
+}
+
+const success = (propsData = {
+  title: '',
+  message: '',
+  direction: '',
+  duration: 4500,
+  container: '.notifications'
+}) => {
+  return notifyWithType(propsData, 'success')
+}
+
+const error = (propsData = {
+  title: '',
+  message: '',
+  direction: '',
+  duration: 4500,
+  container: '.notifications'
+}) => {
+  return notifyWithType(propsData, 'error')
+}
+
+export default {
+  notify,
+  success,
+  error
+}

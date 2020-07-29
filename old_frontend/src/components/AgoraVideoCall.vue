@@ -1,7 +1,7 @@
 <template>
   <div id="ag-canvas">
     <div class="ag-btn-group">
-      <span
+      <span 
         @click="handleExit"
         class="ag-btn exitBtn"
         :class="{'disabled': !readyState}"
@@ -10,26 +10,26 @@
       </span>
       <span v-if="attendeeMode === 'video'"
         @click="handleCamera"
-        class="ag-btn videoControlBtn"
+        class="ag-btn videoControlBtn" 
         title="Enable/Disable Video">
         <i class="ag-icon ag-icon-camera"></i>
         <i class="ag-icon ag-icon-camera-off"></i>
       </span>
       <span v-if="attendeeMode !== 'audience'"
         @click="handleMic"
-        class="ag-btn audioControlBtn"
+        class="ag-btn audioControlBtn" 
         title="Enable/Disable Audio">
         <i class="ag-icon ag-icon-mic"></i>
         <i class="ag-icon ag-icon-mic-off"></i>
       </span>
-      <span
+      <span 
         @click="switchDisplay"
         class="ag-btn displayModeBtn"
         :class="{'disabled': streamList.length > 4}"
         title="Switch Display Mode">
         <i class="ag-icon ag-icon-switch-display"></i>
       </span>
-      <span
+      <span 
         class= "ag-btn disableRemoteBtn"
         :class="{'disabled': streamList.length > 4 || displayMode !== 'pip'}"
         @click="hideRemote"
@@ -41,8 +41,7 @@
 </template>
 
 <script>
-import { merge } from "lodash"
-import AgoraRTC from 'agora-rtc-sdk'
+import { merge } from "lodash";
 
 const tile_canvas = {
   "1": ["span 12/span 24"],
