@@ -31,9 +31,6 @@ Update "agora.config.js" in "/src" with your App ID.
 export const AGORA_APP_ID = 'abcdefg'
 ```
 
-<del>Then download our SDK 'AgoraRTC-*.js', rename it to 'AgoraRTC.js' and put it under the path '/src/library/'.</del>
-Now we use cdn to get sdk. You do not have to download it by yourself any more.
-
 ## Project setup
 
 Run npm to install dependency.
