@@ -58,3 +58,10 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Contact Us
+- You can find full API document at [Document Center](https://docs.agora.io/en/)
+- You can file bugs about this demo at issue
+
+## License
+The MIT License (MIT).
