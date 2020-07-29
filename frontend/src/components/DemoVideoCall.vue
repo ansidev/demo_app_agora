@@ -89,9 +89,11 @@ export default {
     };
   },
   methods: {
-    // handleExit(e) {
-    //   // Return to home
-    // }
+    /* eslint-disable no-unused-vars */
+    handleExit(e) {
+      // Return to home
+      this.$router.push ("/")
+    }
   },
 };
 </script>
@@ -152,7 +154,6 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-
 
 .ag-btn {
   z-index: 12;

@@ -15,66 +15,32 @@
             <div class="login-body">
               <div class="columns">
                 <div class="column is-12">
-                  <ValidationProvider
-                    v-slot="{ valid, invalid, changed, errors }"
-                    rules="required|email"
-                    name="email"
-                  >
-                    <div class="input-container control has-icons-left">
+                  <TextInput v-bind="form.email">
+                    <template v-slot:default="{ type, placeholder, errors }">
                       <input
                         v-model="email"
                         class="ag-rounded input"
                         :class="errors.length < 1 ? 'is-success' : 'is-danger'"
-                        type="text"
-                        placeholder="Email"
+                        :type="type"
+                        :placeholder="placeholder"
                       />
-                      <span class="validate-icon">
-                        <i
-                          v-if="changed"
-                          class="ag-icon"
-                          :class="{'ag-icon-valid': valid, 'ag-icon-invalid': invalid }"
-                        />
-                      </span>
-                      <div
-                        class="validate-msg has-text-black"
-                        v-if="invalid"
-                      >
-                        {{ errors[0] }}
-                      </div>
-                    </div>
-                  </ValidationProvider>
+                    </template>
+                  </TextInput>
                 </div>
               </div>
               <div class="columns">
                 <div class="column is-12">
-                  <ValidationProvider
-                    v-slot="{ valid, invalid, changed, errors }"
-                    rules="required"
-                    name="password"
-                  >
-                    <div class="input-container control has-icons-left">
+                  <TextInput v-bind="form.password">
+                    <template v-slot:default="{ type, placeholder, errors }">
                       <input
                         v-model="password"
                         class="ag-rounded input"
                         :class="errors.length < 1 ? 'is-success' : 'is-danger'"
-                        type="password"
-                        placeholder="Password"
+                        :type="type"
+                        :placeholder="placeholder"
                       />
-                      <span class="validate-icon">
-                        <i
-                          v-if="changed"
-                          class="ag-icon"
-                          :class="{'ag-icon-valid': valid, 'ag-icon-invalid': invalid }"
-                        />
-                      </span>
-                      <div
-                        class="validate-msg has-text-black"
-                        v-if="invalid"
-                      >
-                        {{ errors[0] }}
-                      </div>
-                    </div>
-                  </ValidationProvider>
+                    </template>
+                  </TextInput>
                 </div>
               </div>
             </div>
@@ -109,34 +75,34 @@
 import * as Cookies from "js-cookie";
 
 export default {
-  // components: {
-  //   TextInput: () => import("@/components/form/TextInput")
-  // },
+  components: {
+    TextInput: () => import("@/components/form/TextInput")
+  },
 
   data() {
     return {
       email: "",
-      password: ""
-      // form: {
-      //   email: {
-      //     id: "email",
-      //     placeholder: "Email",
-      //     rules: {
-      //       required: true,
-      //       email: true
-      //     },
-      //     immediate: true
-      //   },
-      //   password: {
-      //     id: "password",
-      //     placeholder: "Password",
-      //     password: true,
-      //     rules: {
-      //       required: true
-      //     },
-      //     immediate: true
-      //   }
-      // }
+      password: "",
+      form: {
+        email: {
+          id: "email",
+          placeholder: "Email",
+          rules: {
+            required: true,
+            email: true
+          },
+          immediate: true
+        },
+        password: {
+          id: "password",
+          placeholder: "Password",
+          password: true,
+          rules: {
+            required: true
+          },
+          immediate: true
+        }
+      }
     };
   },
 
@@ -150,26 +116,24 @@ export default {
       });
 
       const data = await $.login($.email, $.password);
-      const roles = data.roles
-      $.gotoPageBasedOnRole(roles)
+      const roles = data.roles;
+      $.gotoPageBasedOnRole(roles);
     },
     async login(email, password) {
-      const response = await this.$http.post("/login", { email, password })
-      return response.data
+      const response = await this.$http.post("/login", { email, password });
+      return response.data;
     },
     gotoPageBasedOnRole(roles) {
       if (!Array.isArray(roles)) {
-        console.log("Invalid role data")
+        console.log("Invalid role data");
       }
-      let screenMode = "wait"
+      let screenMode = "wait";
       if (roles.includes("Admin")) {
-        screenMode = "user_list"
-      }
-      else if (roles.includes("Artist")) {
-        screenMode = "artist"
-      }
-      else if (roles.includes("User")) {
-        screenMode = "wait"
+        screenMode = "user_list";
+      } else if (roles.includes("Artist")) {
+        screenMode = "artist";
+      } else if (roles.includes("User")) {
+        screenMode = "wait";
       }
       Cookies.set("screenMode", screenMode);
       this.$router.push("/screen");
@@ -252,35 +216,5 @@ export default {
 
 .input-container {
   padding-bottom: 25px;
-}
-
-.validate-icon {
-  position: absolute;
-  right: -36px;
-  top: 0px;
-  color: red;
-  font-size: 2rem;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.validate-icon > .ag-icon-invalid {
-  color: #d0021b;
-}
-
-.validate-icon > .ag-icon-valid {
-  color: rgb(178, 206, 149);
-}
-
-.validate-msg {
-  width: 100%;
-  position: absolute;
-  bottom: -10px;
-  color: #ff3860;
-  text-align: left;
-  font-size: 12px;
-  height: 30px;
-  padding-left: 2rem;
 }
 </style>
